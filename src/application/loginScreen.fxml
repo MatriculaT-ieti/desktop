@@ -11,9 +11,9 @@
    <children>
       <AnchorPane layoutX="544.0" layoutY="66.0" prefHeight="562.0" prefWidth="508.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <TextField layoutX="29.0" layoutY="178.0" prefHeight="25.0" prefWidth="449.0" promptText="email" />
-            <PasswordField layoutX="29.0" layoutY="356.0" prefHeight="25.0" prefWidth="449.0" promptText="password" />
-            <Button layoutX="29.0" layoutY="494.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="449.0" style="-fx-background-radius: 100; -fx-background-color: #131414;" text="Login" textFill="WHITE" />
+            <TextField fx:id="email" layoutX="29.0" layoutY="178.0" prefHeight="25.0" prefWidth="449.0" promptText="email" />
+            <PasswordField fx:id="password" layoutX="29.0" layoutY="356.0" prefHeight="25.0" prefWidth="449.0" promptText="password" />
+            <Button layoutX="29.0" layoutY="494.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="25.0" prefWidth="449.0" style="-fx-background-radius: 100; -fx-background-color: #131414;" text="Login" textFill="WHITE" />
             <Label layoutX="200.0" layoutY="48.0" text="Sign In">
                <font>
                   <Font size="35.0" />

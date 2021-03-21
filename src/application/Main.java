@@ -8,13 +8,15 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Main extends Application {
+	
+	public static Stage escenario;
 
 	@Override
 	public void start(Stage stage) {
 		
 		try {
 
-			Parent root = FXMLLoader.load(getClass().getResource("example.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("loginScreen.fxml"));
 
 			Scene scene = new Scene(root);
 	
@@ -23,6 +25,8 @@ public class Main extends Application {
 			stage.initStyle(StageStyle.TRANSPARENT);
 			
 			stage.show();
+			
+			escenario = stage;
 
 		} catch (Exception e) {
 			e.printStackTrace();
