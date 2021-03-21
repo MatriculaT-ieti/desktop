@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane onMouseDragged="#dragged" onMousePressed="#pressed" prefHeight="694.0" prefWidth="1125.0" style="-fx-background-color: #131414;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+   <children>
+      <AnchorPane layoutX="544.0" layoutY="66.0" prefHeight="562.0" prefWidth="508.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <TextField layoutX="29.0" layoutY="178.0" prefHeight="25.0" prefWidth="449.0" promptText="email" />
+            <PasswordField layoutX="29.0" layoutY="356.0" prefHeight="25.0" prefWidth="449.0" promptText="password" />
+            <Button layoutX="29.0" layoutY="494.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="449.0" style="-fx-background-radius: 100; -fx-background-color: #131414;" text="Login" textFill="WHITE" />
+            <Label layoutX="200.0" layoutY="48.0" text="Sign In">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="105.0" layoutY="214.0" text="Welcome to MatriculaT" textFill="#ff7f0e">
+         <font>
+            <Font name="Lucida Sans Unicode" size="34.0" />
+         </font>
+      </Label>
+      <Label layoutX="105.0" layoutY="278.0" opacity="0.73" prefHeight="83.0" prefWidth="376.0" text="El portal donde se te permitirá como administrador crear desde zero ciclos, módulos profesionales y unidades formativas entre otras muchas mas opciones..." textFill="#e1dcdc" wrapText="true" />
+      <Button layoutX="1073.0" mnemonicParsing="false" onAction="#handleClose" opacity="0.95" style="-fx-background-color: #131414;" text="X" textFill="WHITE">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+   </children>
 </AnchorPane>
-
