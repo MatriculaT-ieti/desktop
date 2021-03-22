@@ -48,24 +48,23 @@ public class MainController implements Initializable {
 
 			alert.showAndWait();
 			
-		}
-		
-		getToken(emailAdmin, passAdmin);
-		
-		AnchorPane root;
-		
-		try {
-			root = (AnchorPane)FXMLLoader.load(getClass().getResource("cyclesScreen.fxml"));
-			Scene scene = new Scene(root,600,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			Main.escenario.setScene(scene);
-			Main.escenario.setTitle("Dos escenas--pagina 2");
+		}else {
+			getToken(emailAdmin, passAdmin);
 			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+			AnchorPane root;
+			
+			try {
+				root = (AnchorPane)FXMLLoader.load(getClass().getResource("cyclesScreen.fxml"));
+				Scene scene = new Scene(root);
+				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				Main.escenario.setScene(scene);
+				Main.escenario.setTitle("Dos escenas--pagina 2");
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}	
 	}
 		
 	@FXML
