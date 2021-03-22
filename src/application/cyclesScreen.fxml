@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="694.0" prefWidth="1125.0" style="-fx-background-color: #131414;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CyclesScreenController">
    <children>
-      <ChoiceBox layoutX="61.0" layoutY="59.0" prefHeight="25.0" prefWidth="393.0" />
+      <ChoiceBox fx:id="cycleList" layoutX="61.0" layoutY="59.0" prefHeight="25.0" prefWidth="393.0" />
       <Accordion layoutX="61.0" layoutY="108.0" prefHeight="468.0" prefWidth="393.0">
         <panes>
           <TitledPane animated="false" text="untitled 1">

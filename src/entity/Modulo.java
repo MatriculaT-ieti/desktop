@@ -15,6 +15,15 @@ public class Modulo {
 	public Modulo() {
 		super();
 	}
+	
+	
+	
+	public Modulo(String name, ArrayList<Unit> moduleList) {
+		super();
+		Name = name;
+		ModuleList = moduleList;
+	}
+
 	public Modulo(String code, String name, String maxHours, String minHours, String startDate, String finalDate,
 			ArrayList<Unit> moduleList) {
 		super();
