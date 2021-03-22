@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,11 +9,6 @@
 
 <AnchorPane prefHeight="694.0" prefWidth="1125.0" style="-fx-background-color: #131414;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CyclesScreenController">
    <children>
-      <ButtonBar layoutX="61.0" layoutY="595.0" prefHeight="40.0" prefWidth="393.0" style="-fx-background-color: #AFA69E; -fx-background-radius: 100;">
-        <buttons>
-          <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Button" />
-        </buttons>
-      </ButtonBar>
       <ChoiceBox layoutX="61.0" layoutY="59.0" prefHeight="25.0" prefWidth="393.0" />
       <Accordion layoutX="61.0" layoutY="108.0" prefHeight="468.0" prefWidth="393.0">
         <panes>
@@ -40,5 +34,6 @@
             <Font size="26.0" />
          </font>
       </Button>
+      <Button layoutX="875.0" layoutY="581.0" mnemonicParsing="false" onAction="#handleReturnMenu" prefHeight="39.0" prefWidth="197.0" text="Back to Menu" />
    </children>
 </AnchorPane>

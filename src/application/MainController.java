@@ -3,10 +3,13 @@ package application;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ResourceBundle;
+import javax.net.ssl.HttpsURLConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +25,7 @@ import javafx.stage.Stage;
 
 public class MainController implements Initializable {
 	
+	private String url = "https://matriculat-ieti.herokuapp.com";
 	String emailAdmin;
 	String passAdmin;
 	double x = 0;
@@ -49,22 +53,32 @@ public class MainController implements Initializable {
 			alert.showAndWait();
 			
 		}else {
-			getToken(emailAdmin, passAdmin);
-			
-			AnchorPane root;
-			
-			try {
-				root = (AnchorPane)FXMLLoader.load(getClass().getResource("cyclesScreen.fxml"));
-				Scene scene = new Scene(root);
-				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-				Main.escenario.setScene(scene);
-				Main.escenario.setTitle("Dos escenas--pagina 2");
+
+			if(getToken(emailAdmin, passAdmin) != false) {
+				AnchorPane root;
 				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				try {
+					root = (AnchorPane)FXMLLoader.load(getClass().getResource("menu.fxml"));
+					Scene scene = new Scene(root);
+					scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+					Main.escenario.setScene(scene);
+					Main.escenario.setTitle("Menu");
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else {
+				
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("ERROR");
+				alert.setHeaderText("CAMPOS ERRONEOS");
+				alert.setContentText("Email o contraseña incorrectas");
+
+				alert.showAndWait();
+				
 			}
-		}	
+		}			
 	}
 		
 	@FXML
@@ -93,34 +107,61 @@ public class MainController implements Initializable {
 		
 	}
 	
-	private void getToken(String email, String password) {
+	private boolean getToken(String email, String password) {
+		
+		boolean verify = false;
+		String endPoint = "/api/login/admins";
 		
 		try {
-			String url = "https://matriculat-ieti.herokuapp.com/admins";
-			URL obj = new URL(url);
-			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-			con.setRequestMethod("GET");
-			con.setRequestProperty("email", email);
+			
+			MessageDigest passEncrypt = MessageDigest.getInstance("SHA-256");
+			byte[] encodedhash = passEncrypt.digest(password.getBytes(StandardCharsets.UTF_8));
+			
+			URL obj = new URL(url+endPoint+"?email="+email+"&password="+bytesToHex(encodedhash));
+			HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+			
+			System.out.println(obj);
 
 			BufferedReader bf = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
 			String inputLine;
 			StringBuffer response = new StringBuffer();
-			while ((inputLine = bf.readLine()) != null) {
+			
+			if (!(inputLine = bf.readLine()).equalsIgnoreCase("{\"token\":null}")) {
+				
+				System.out.println(inputLine);
+				
 				response.append(inputLine);
+				verify = true;
 			}
+			
 			bf.close();
 			// print result
-			System.out.println(response.toString());
-			
+			//System.out.println(response.toString());
+
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return verify;
+	}
+	
+	private static String bytesToHex(byte[] hash) {
+	    StringBuilder hexString = new StringBuilder(2 * hash.length);
+	    for (int i = 0; i < hash.length; i++) {
+	        String hex = Integer.toHexString(0xff & hash[i]);
+	        if(hex.length() == 1) {
+	            hexString.append('0');
+	        }
+	        hexString.append(hex);
+	    }
+	    return hexString.toString();
 	}
 	
 	private boolean verifyAdmin(String email, String password) {
