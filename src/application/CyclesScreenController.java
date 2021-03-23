@@ -9,6 +9,7 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -29,6 +30,8 @@ import ca.fuzzlesoft.JsonParse;
 import entity.Cycle;
 import entity.Modulo;
 import entity.Unit;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,7 +50,7 @@ public class CyclesScreenController implements Initializable {
 	private Button idFolder;
 
 	@FXML
-	private ChoiceBox<Cycle> cycleList;
+	private ChoiceBox<String> cycleList;
 
 	@FXML
 	private Label fileLable;
@@ -110,7 +113,7 @@ public class CyclesScreenController implements Initializable {
 			//BufferedReader bf = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
 			BufferedReader in = new BufferedReader(
-	                new InputStreamReader(con.getInputStream()));
+	                new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
 	        String inputLine;
 	        StringBuffer response = new StringBuffer();
 	        while ((inputLine = in.readLine()) != null) {
@@ -126,14 +129,17 @@ public class CyclesScreenController implements Initializable {
 	        //System.out.println(object.get("codi_cicle_formatiu"));
         	//System.out.println(object);
 	        
-	        ArrayList<Cycle> cycleList = new ArrayList<Cycle>();
+	        ArrayList<Cycle> cycleArray = new ArrayList<Cycle>();
 	        
 	        for(int i = 0; i < array.length(); i ++) {
 	        	
 	        	JSONObject object = (JSONObject) array.get(i);
 	        	
 	        	Cycle cycle = new Cycle();
-	        	cycle.setName(object.get("codi_cicle_formatiu").toString());
+	        	
+	        	cycle.setName(object.get("nom_cicle_formatiu").toString());
+	        	
+	        	//System.out.println(cycle.getName());
 	        	
 	        	ArrayList<Modulo> moduleList = new ArrayList<Modulo>();
 	        	
@@ -141,11 +147,16 @@ public class CyclesScreenController implements Initializable {
 		        StringBuffer responseModuls = new StringBuffer();
 		        responseModuls.append(inputLineModuls);
 	        	
-	        	JSONArray arrayModuls = new JSONArray(response.toString());
+		        //System.out.println(responseModuls);
+		        
+	        	JSONObject arrayModuls = new JSONObject(responseModuls);
+	        	
+	        	System.out.println(arrayModuls.get("AF10001"));
 	        	
 	        	for(int j = 0; j < arrayModuls.length(); j ++) {
 	        		
-	        		JSONObject objectModule = (JSONObject) arrayModuls.get(j);
+	        		/*
+	        		JSONObject objectModule = arrayModuls.get(j);
 	        		
 	        		System.out.println(objectModule);
 	        		
@@ -169,15 +180,31 @@ public class CyclesScreenController implements Initializable {
 	        			
 	        			unityList.add(unit);
 	        			
-	        		}	*/
+	        		}	
 	        		moduleList.add(modulo);
+	        		*/
 	        	}
 	        
 	        	cycle.setModuleList(moduleList);
-	        	cycleList.add(cycle); 
+	        	
+	        	cycleArray.add(cycle); 
+	        	
+	        	
 	        }
 	        
-	        System.out.println(cycleList.size());
+	              
+	        ObservableList<String> cycleArrayList = FXCollections.observableList(new ArrayList<String>());
+	        
+	        
+	        for (Cycle cycle2 : cycleArray) {
+
+	        	cycleList.getItems().add(cycle2.getName());
+	        	
+			}	        
+	        
+	                
+	        
+	        //System.out.println(cycleList.size());
 	        
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
