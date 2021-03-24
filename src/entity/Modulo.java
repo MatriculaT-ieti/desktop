@@ -10,13 +10,14 @@ public class Modulo {
 	private String MinHours;
 	private String StartDate;
 	private String FinalDate;
-	private ArrayList<Unit> ModuleList = new ArrayList<Unit>();
+	private ArrayList<Unit> UnitList = new ArrayList<Unit>();
 	
 	public Modulo() {
 		super();
 	}
+	
 	public Modulo(String code, String name, String maxHours, String minHours, String startDate, String finalDate,
-			ArrayList<Unit> moduleList) {
+			ArrayList<Unit> unitList) {
 		super();
 		Code = code;
 		Name = name;
@@ -24,7 +25,7 @@ public class Modulo {
 		MinHours = minHours;
 		StartDate = startDate;
 		FinalDate = finalDate;
-		ModuleList = moduleList;
+		UnitList = unitList;
 	}
 	public String getCode() {
 		return Code;
@@ -62,16 +63,16 @@ public class Modulo {
 	public void setFinalDate(String finalDate) {
 		FinalDate = finalDate;
 	}
-	public ArrayList<Unit> getModuleList() {
-		return ModuleList;
+	public ArrayList<Unit> getUnitList() {
+		return UnitList;
 	}
-	public void setModuleList(ArrayList<Unit> moduleList) {
-		ModuleList = moduleList;
+	public void setUnitList(ArrayList<Unit> unitList) {
+		UnitList = unitList;
 	}
 	
 	@Override
 	public String toString() {
 		return "Module [Code=" + Code + ", Name=" + Name + ", MaxHours=" + MaxHours + ", MinHours=" + MinHours
-				+ ", StartDate=" + StartDate + ", FinalDate=" + FinalDate + ", ModuleList=" + ModuleList + "]";
+				+ ", StartDate=" + StartDate + ", FinalDate=" + FinalDate + ", UnitList=" + UnitList + "]";
 	}	
 }
