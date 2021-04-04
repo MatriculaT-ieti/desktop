@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -80,7 +81,7 @@ public class AddCyclesScreenController implements Initializable {
 	}
 	
 	@FXML
-	private void searchFolder(ActionEvent event) throws IOException {
+	private void searchFolder(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Buscar Archivo Cursos");
 
@@ -101,11 +102,11 @@ public class AddCyclesScreenController implements Initializable {
 			}
 			br.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("No se ha seleccionado ningun archivo o bien el archivo seleccionado no tiene un formato correcto.");
+		} catch (NullPointerException e) {
+			System.out.println("No se ha seleccionado ningun archivo.");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		int c = -1;
@@ -158,7 +159,13 @@ public class AddCyclesScreenController implements Initializable {
 
 	}
 	
+	@FXML
+	private void addCycles(ActionEvent event) {
+		System.out.println(tableid.getSelectionModel().getSelectedItems());
+    }
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		tableid.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 	}
 }

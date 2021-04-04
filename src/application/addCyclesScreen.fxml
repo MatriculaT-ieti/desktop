@@ -35,6 +35,6 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Button fx:id="addCyclesButton" layoutX="586.0" layoutY="598.0" mnemonicParsing="false" text="Add Cycles Selected" />
+      <Button fx:id="addCyclesButton" layoutX="586.0" layoutY="598.0" mnemonicParsing="false" onAction="#addCycles" text="Add Cycles Selected" />
    </children>
 </AnchorPane>

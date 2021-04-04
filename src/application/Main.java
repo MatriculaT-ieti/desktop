@@ -20,7 +20,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 	
 			stage.setScene(scene);
-			stage.initStyle(StageStyle.TRANSPARENT);
+			stage.initStyle(StageStyle.UNDECORATED);
 			
 			stage.show();
 			
