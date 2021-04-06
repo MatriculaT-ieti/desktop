@@ -5,10 +5,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.http.HttpRequest;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import entity.Cycle;
 import entity.Modulo;
@@ -28,6 +34,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 public class AddCyclesScreenController implements Initializable {
+	
+	private String url = "https://matriculat-ieti.herokuapp.com";
 	
 	private ArrayList<Cycle> cycles;
 	
@@ -161,7 +169,29 @@ public class AddCyclesScreenController implements Initializable {
 	
 	@FXML
 	private void addCycles(ActionEvent event) {
-		System.out.println(tableid.getSelectionModel().getSelectedItems());
+		URL obj;
+		try {
+			obj = new URL(url + "/api/db/cycle/import/");
+			
+			HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+			con.setRequestProperty("Content-Type", "application/json");
+			con.setDoOutput(true);
+			
+			System.out.println(obj);
+			
+			OutputStream os = con.getOutputStream();
+			os.write(tableid.getSelectionModel().getSelectedItems().toString().replaceAll("'", "").getBytes("UTF-8"));
+			os.close();
+			
+			System.out.println(tableid.getSelectionModel().getSelectedItems().toString().replaceAll("'", ""));
+			
+			con.getInputStream();
+		} catch (MalformedURLException e) {
+			System.err.println("Error en la URL al importar.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
     }
 	
 	@Override

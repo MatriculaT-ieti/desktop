@@ -70,9 +70,11 @@ public class Modulo {
 		UnitList = unitList;
 	}
 	
+	// codi_modul,nom_modul,durada_min_modul,durada_max_modul,data_inici_modul,data_fi_modul
+	
 	@Override
 	public String toString() {
-		return "Module [Code=" + Code + ", Name=" + Name + ", MaxHours=" + MaxHours + ", MinHours=" + MinHours
-				+ ", StartDate=" + StartDate + ", FinalDate=" + FinalDate + ", UnitList=" + UnitList + "]";
+		return "{\"codi_modul\":\"" + Code + "\", \"nom_modul\":\"" + Name + "\", \"durada_min_modul\":\"" + MinHours + "\", \"durada_max_modul\":\"" + MaxHours + "\", \"durada_min_modul\":\"" + MinHours
+				+ "\", \"data_inici_modul\":\"" + StartDate + "\", \"data_fi_modul\":\"" + FinalDate + "\", \"unitats\":" + UnitList + "}";
 	}	
 }
