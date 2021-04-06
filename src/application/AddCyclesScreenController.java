@@ -17,10 +17,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 public class AddCyclesScreenController implements Initializable {
+	
+	@FXML
+	private TableView table;
 	
 	@FXML
 	private Button idFolder;
