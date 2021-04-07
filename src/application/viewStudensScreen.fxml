@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="694.0" prefWidth="1125.0" style="-fx-background-color: #131414;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ViewStudensScreenController">
+   <children>
+      <Button layoutX="911.0" layoutY="589.0" mnemonicParsing="false" onAction="#handleReturnMenu" prefHeight="39.0" prefWidth="197.0" text="Volver al Menu" />
+      <Button layoutX="1093.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleClose" opacity="0.95" style="-fx-background-color: #131414;" text="X" textFill="WHITE">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <AnchorPane layoutX="44.0" layoutY="174.0" prefHeight="394.0" prefWidth="672.0" style="-fx-background-color: FFFF;">
+         <children>
+            <ScrollPane prefHeight="394.0" prefWidth="672.0">
+               <content>
+                  <ListView fx:id="idListView" prefHeight="392.0" prefWidth="670.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="759.0" layoutY="174.0" prefHeight="394.0" prefWidth="349.0" style="-fx-background-color: FFFF;">
+         <children>
+            <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DNI" wrappingWidth="42.583984375" />
+            <TextField fx:id="idDni" editable="false" layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="326.0" />
+            <Text layoutX="14.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Completo" />
+            <TextField fx:id="idName" editable="false" layoutX="14.0" layoutY="96.0" prefHeight="25.0" prefWidth="326.0" />
+            <Text layoutX="12.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono" />
+            <TextField fx:id="idPhone" editable="false" layoutX="12.0" layoutY="163.0" prefHeight="25.0" prefWidth="326.0" />
+            <Text layoutX="17.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Correo" />
+            <TextField fx:id="idCorreo" editable="false" layoutX="12.0" layoutY="216.0" prefHeight="25.0" prefWidth="326.0" />
+            <Text layoutX="18.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nacionalidad" />
+            <TextField fx:id="idCountry" editable="false" layoutX="14.0" layoutY="275.0" prefHeight="25.0" prefWidth="326.0" />
+            <Text layoutX="18.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Direccion Completa" />
+            <TextField fx:id="idDirection" editable="false" layoutX="14.0" layoutY="337.0" prefHeight="25.0" prefWidth="326.0" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="388.0" layoutY="39.0" text="Alumnos Matriculados" textFill="#ff7f0e">
+         <font>
+            <Font name="Lucida Sans Unicode" size="34.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="cycleList" layoutX="44.0" layoutY="114.0" prefHeight="25.0" prefWidth="358.0" />
+      <Button fx:id="studensButton" layoutX="455.0" layoutY="114.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Buscar Alumnos" />
+   </children>
+</AnchorPane>
