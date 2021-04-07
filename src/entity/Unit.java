@@ -87,9 +87,11 @@ public class Unit {
 		Project = project;
 	}
 
+	// codi_unitat_formativa,nom_unitat_formativa,durada_unitat_formativa,indicador_fct,indicador_sintesis,indicador_idioma,indicador_projecte
+	
 	@Override
 	public String toString() {
-		return "Unit [Code=" + Code + ", Name=" + Name + ", TotalHours=" + TotalHours + ", Fct=" + Fct + ", Synthesis="
-				+ Synthesis + ", Language=" + Language + ", Project=" + Project + "]";
+		return "{\"codi_unitat_formativa\":\"" + Code + "\", \"nom_unitat_formativa\":\"" + Name + "\", \"durada_unitat_formativa\":\"" + TotalHours + "\", \"indicador_fct\":\"" + Fct + "\",\"indicador_sintesis\":\""
+				+ Synthesis + "\", \"indicador_idioma\":\"" + Language + "\", \"indicador_projecte\":\"" + Project + "\"}";
 	}	
 }

@@ -48,7 +48,7 @@ public class MainController implements Initializable {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("ERROR");
 			alert.setHeaderText("CAMPOS INSUFICIENTES");
-			alert.setContentText("Introduce un email y una contraseña");
+			alert.setContentText("Introduce un email y una contrase" + 	"\u00f1" + "a");
 
 			alert.showAndWait();
 			
@@ -73,7 +73,7 @@ public class MainController implements Initializable {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("ERROR");
 				alert.setHeaderText("CAMPOS ERRONEOS");
-				alert.setContentText("Email o contraseña incorrectas");
+				alert.setContentText("Email o contrase" + "\u00f1" +"a incorrectos");
 
 				alert.showAndWait();
 				
@@ -143,8 +143,6 @@ public class MainController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

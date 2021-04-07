@@ -24,7 +24,7 @@
               <columns>
                 <TableColumn fx:id="codigoCicloId" prefWidth="167.0" text="Codigo Ciclo" />
                   <TableColumn fx:id="nombreCicloId" prefWidth="158.0" text="Nombre Ciclo" />
-                  <TableColumn prefWidth="182.0" text="Codigo Adaptacion Curricular" />
+                  <TableColumn fx:id="adaptationCurrId" prefWidth="182.0" text="Codigo Adaptacion Curricular" />
                   <TableColumn fx:id="horasTotalId" prefWidth="144.0" text="Horas Totales Ciclo" />
                   <TableColumn fx:id="startDateId" prefWidth="154.0" text="Fecha Inicio" />
                   <TableColumn fx:id="finalDateId" prefWidth="160.0" text="Fecha Finalización" />
