@@ -13,6 +13,11 @@ public class Unit {
 	public Unit() {
 		super();
 	}
+	
+	public Unit(String name) {
+		super();
+		Name = name;
+	}
 
 	public Unit(String code, String name, String totalHours, String fct, String synthesis, String language,
 			String project) {

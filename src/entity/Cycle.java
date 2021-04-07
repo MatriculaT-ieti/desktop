@@ -15,6 +15,14 @@ public class Cycle {
 	public Cycle() {
 		super();
 	}
+	
+	
+
+	public Cycle(String name, ArrayList<Modulo> moduleList) {
+		super();
+		Name = name;
+		ModuleList = moduleList;
+	}
 
 	public Cycle(String code, String name, String adapCurricularAdaptation, String totalHours, String startedDate,
 			String finalDate, ArrayList<Modulo> moduleList) {
