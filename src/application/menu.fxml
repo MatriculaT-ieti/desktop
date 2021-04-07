@@ -13,7 +13,7 @@
             <Font name="Lucida Sans Unicode" size="34.0" />
          </font>
       </Label>
-      <Label layoutX="93.0" layoutY="282.0" prefHeight="46.0" prefWidth="195.0" style="-fx-background-color: #FFFFFF;" text="Agregar Nuevos Cursos" />
+      <Label layoutX="93.0" layoutY="282.0" prefHeight="46.0" prefWidth="195.0" style="-fx-background-color: #FFFFFF;" text="Proximamente..." />
       <Label layoutX="93.0" layoutY="393.0" prefHeight="46.0" prefWidth="195.0" style="-fx-background-color: #FFFFFF;" text="Proximamente..." />
       <Label layoutX="465.0" layoutY="393.0" prefHeight="46.0" prefWidth="195.0" style="-fx-background-color: #FFFFFF;" text="Proximamente..." />
       <Label layoutX="465.0" layoutY="282.0" prefHeight="46.0" prefWidth="195.0" style="-fx-background-color: #FFFFFF;" text="Proximamente..." />

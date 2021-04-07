@@ -13,15 +13,15 @@
          <children>
             <TextField fx:id="email" layoutX="29.0" layoutY="178.0" prefHeight="25.0" prefWidth="449.0" promptText="email" />
             <PasswordField fx:id="password" layoutX="29.0" layoutY="356.0" prefHeight="25.0" prefWidth="449.0" promptText="password" />
-            <Button layoutX="29.0" layoutY="494.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="25.0" prefWidth="449.0" style="-fx-background-radius: 100; -fx-background-color: #131414;" text="Login" textFill="WHITE" />
-            <Label layoutX="200.0" layoutY="48.0" text="Sign In">
+            <Button layoutX="29.0" layoutY="494.0" mnemonicParsing="false" onAction="#loginAdmin" prefHeight="25.0" prefWidth="449.0" style="-fx-background-radius: 100; -fx-background-color: #131414;" text="Acceder" textFill="WHITE" />
+            <Label layoutX="160.0" layoutY="52.0" text="Identificarse">
                <font>
                   <Font size="35.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <Label layoutX="105.0" layoutY="214.0" text="Welcome to MatriculaT" textFill="#ff7f0e">
+      <Label layoutX="105.0" layoutY="214.0" text="Bienvenido a MatriculaT" textFill="#ff7f0e">
          <font>
             <Font name="Lucida Sans Unicode" size="34.0" />
          </font>

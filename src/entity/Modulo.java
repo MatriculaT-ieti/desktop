@@ -15,7 +15,13 @@ public class Modulo {
 	public Modulo() {
 		super();
 	}
-	
+  
+	public Modulo(String name, ArrayList<Unit> moduleList) {
+		super();
+		Name = name;
+		UnitList = moduleList;
+	}
+
 	public Modulo(String code, String name, String maxHours, String minHours, String startDate, String finalDate,
 			ArrayList<Unit> unitList) {
 		super();
@@ -70,11 +76,8 @@ public class Modulo {
 		UnitList = unitList;
 	}
 	
-	// codi_modul,nom_modul,durada_min_modul,durada_max_modul,data_inici_modul,data_fi_modul
-	
 	@Override
 	public String toString() {
 		return "{\"codi_modul\":\"" + Code + "\", \"nom_modul\":\"" + Name + "\", \"durada_min_modul\":\"" + MinHours + "\", \"durada_max_modul\":\"" + MaxHours + "\", \"durada_min_modul\":\"" + MinHours
-				+ "\", \"data_inici_modul\":\"" + StartDate + "\", \"data_fi_modul\":\"" + FinalDate + "\", \"unitats\":" + UnitList + "}";
 	}	
 }

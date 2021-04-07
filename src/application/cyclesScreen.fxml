@@ -1,39 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="694.0" prefWidth="1125.0" style="-fx-background-color: #131414;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CyclesScreenController">
+<AnchorPane prefHeight="694.0" prefWidth="1125.0" style="-fx-background-color: #131414;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CyclesScreenController">
    <children>
-      <ChoiceBox layoutX="61.0" layoutY="59.0" prefHeight="25.0" prefWidth="393.0" />
-      <Accordion layoutX="61.0" layoutY="108.0" prefHeight="468.0" prefWidth="393.0">
-        <panes>
-          <TitledPane animated="false" text="untitled 1">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </TitledPane>
-          <TitledPane animated="false" text="untitled 2">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </TitledPane>
-          <TitledPane animated="false" text="untitled 3">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
-          </TitledPane>
-        </panes>
-      </Accordion>
+      <ChoiceBox fx:id="cycleList" layoutX="61.0" layoutY="59.0" prefHeight="25.0" prefWidth="393.0" />
+      <ScrollPane layoutX="58.0" layoutY="126.0" prefHeight="462.0" prefWidth="1015.0">
+         <content>
+            <Accordion fx:id="accordionId" prefHeight="446.0" prefWidth="1014.0" />
+         </content>
+      </ScrollPane>
       <Button layoutX="1083.0" mnemonicParsing="false" onAction="#handleClose" opacity="0.95" style="-fx-background-color: #131414;" text="X" textFill="WHITE">
          <font>
             <Font size="26.0" />
          </font>
       </Button>
-      <Button layoutX="875.0" layoutY="581.0" mnemonicParsing="false" onAction="#handleReturnMenu" prefHeight="39.0" prefWidth="197.0" text="Back to Menu" />
+      <Button layoutX="876.0" layoutY="615.0" mnemonicParsing="false" onAction="#handleReturnMenu" prefHeight="39.0" prefWidth="197.0" text="Volver al Menu" />
+      <Button layoutX="595.0" layoutY="56.0" mnemonicParsing="false" onAction="#handleSelectCyle" prefHeight="31.0" prefWidth="197.0" text="Buscar Curso" />
    </children>
 </AnchorPane>
