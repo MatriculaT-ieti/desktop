@@ -137,6 +137,8 @@ public class AddCyclesScreenController implements Initializable {
 					cycles.get(c).getModuleList().add(new Modulo(lines.get(i + 1)[6], lines.get(i + 1)[7], lines.get(i + 1)[8], lines.get(i + 1)[9], lines.get(i + 1)[10], lines.get(i + 1)[11], new ArrayList<>()));
 					cycles.get(c).getModuleList().get(m).getUnitList().add(new Unit(lines.get(i + 1)[12], lines.get(i + 1)[13], lines.get(i + 1)[14], lines.get(i + 1)[15], lines.get(i + 1)[16], lines.get(i + 1)[17], lines.get(i + 1)[18]));
 				} else {
+					cycles.get(c).getModuleList().add(new Modulo(lines.get(i)[6], lines.get(i)[7], lines.get(i)[8], lines.get(i)[9], lines.get(i)[10], lines.get(i)[11], new ArrayList<>()));
+					i += 1;
 					c += 1;
 					m += 1;
 					cycles.add(new Cycle(lines.get(i)[0], lines.get(i)[1], lines.get(i)[2], lines.get(i)[3], lines.get(i)[4], lines.get(i)[5], new ArrayList<>()));
@@ -158,6 +160,9 @@ public class AddCyclesScreenController implements Initializable {
 			}
 		}
 		
+		System.out.println(cycles.get(0).toString());
+		System.out.println(cycles.get(1).toString());
+		
 		codigoCicloId.setCellValueFactory(new PropertyValueFactory<>("Code"));
 		nombreCicloId.setCellValueFactory(new PropertyValueFactory<>("Name"));
 		adaptationCurrId.setCellValueFactory(new PropertyValueFactory<>("AdapCurricularAdaptation"));
@@ -173,15 +178,14 @@ public class AddCyclesScreenController implements Initializable {
 	
 	@FXML
 	private void addCycles(ActionEvent event) {
+		System.out.println("Inserting data...");
 		URL obj;
 		try {
-			obj = new URL(url + "/api/db/cycle/import/");
+			obj = new URL(url + "/api/db/cycle/import");
 			
 			HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 			con.setRequestProperty("Content-Type", "application/json");
 			con.setDoOutput(true);
-			
-			System.out.println(obj);
 			
 			OutputStream os = con.getOutputStream();
 			os.write(tableid.getSelectionModel().getSelectedItems().toString().replaceAll("'", "").getBytes("UTF-8"));
@@ -193,7 +197,7 @@ public class AddCyclesScreenController implements Initializable {
 		} catch (MalformedURLException e) {
 			System.err.println("Error en la URL al importar.");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println("Error en la respuesta del servidor.");
 		}
 
     }

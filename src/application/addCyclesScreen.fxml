@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="694.0" prefWidth="1125.0" style="-fx-background-color: #131414;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddCyclesScreenController">
+<AnchorPane prefHeight="694.0" prefWidth="1125.0" style="-fx-background-color: #131414;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddCyclesScreenController">
    <children>
       <Label fx:id="fileLable" layoutX="71.0" layoutY="602.0" prefHeight="17.0" prefWidth="302.0" style="-fx-background-color: #FFFFFF;" text="Select the file..." />
       <Button fx:id="idFolder" layoutX="395.0" layoutY="598.0" mnemonicParsing="false" onAction="#searchFolder" prefHeight="25.0" prefWidth="69.0" text="Buscar" />
@@ -35,6 +35,6 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Button fx:id="addCyclesButton" layoutX="586.0" layoutY="598.0" mnemonicParsing="false" text="Agregar Ciclos Seleccionados" />
+      <Button fx:id="addCyclesButton" layoutX="586.0" layoutY="598.0" mnemonicParsing="false" onAction="#addCycles" text="Agregar Ciclos Seleccionados" />
    </children>
 </AnchorPane>

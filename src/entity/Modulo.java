@@ -78,6 +78,6 @@ public class Modulo {
 	
 	@Override
 	public String toString() {
-		return "{\"codi_modul\":\"" + Code + "\", \"nom_modul\":\"" + Name + "\", \"durada_min_modul\":\"" + MinHours + "\", \"durada_max_modul\":\"" + MaxHours + "\", \"durada_min_modul\":\"" + MinHours
+		return "{\"codi_modul\":\"" + Code + "\", \"nom_modul\":\"" + Name + "\", \"durada_min_modul\":\"" + MinHours + "\", \"durada_max_modul\":\"" + MaxHours + "\", " + "\"data_inici_modul\":\"" + StartDate + "\", " + "\"data_fi_modul\":\"" + FinalDate + "\", \"unitats\":" + UnitList + "}";
 	}	
 }

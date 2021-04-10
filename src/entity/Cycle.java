@@ -90,11 +90,7 @@ public class Cycle {
 
 	public void setModuleList(ArrayList<Modulo> moduleList) {
 		ModuleList = moduleList;
-	}
-
-	
-//	codi_cicle_formatiu,nom_cicle_formatiu,codi_adaptacio_curricular,hores_cicle_formatiu,data_inici_cicle_formatiu,data_fi_cicle_formatiu
-	
+	}	
 	
 	@Override
 	public String toString() {
