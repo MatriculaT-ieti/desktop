@@ -7,13 +7,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import com.google.gson.Gson;
 
 import entity.Cycle;
 import entity.Modulo;
 import entity.RequirementProfile;
 import entity.Student;
+import entity.StudentImport;
 import entity.Unit;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,13 +33,13 @@ import javafx.stage.FileChooser;
 
 public class AddStudentsScreenController implements Initializable {
 	
-	private ArrayList<RequirementProfile> cycles;
+	private static ArrayList<StudentImport> studentsList;
 	
 	 @FXML
-	 private TableView<Student> tableid;
+	 private TableView<StudentImport> tableid;
 	 
 	 @FXML
-	 private TableColumn<Student, String> idConvocatoria, idCodiSolicitud, idTipusSolicitud, idEstatSolicitud, idNom, idPrimerCognom, idSegonCognom, idIdentificadorRalc, idTipusAlumne, 
+	 private TableColumn<StudentImport, String> idConvocatoria, idCodiSolicitud, idTipusSolicitud, idEstatSolicitud, idNom, idPrimerCognom, idSegonCognom, idIdentificadorRalc, idTipusAlumne, 
 	 idCodiCentreP1, idNomCentreP1, idNaturalesaCentreP1, idMunicipiCentreP1, idSsttCentreP1, idCodiEnsenyamentP1, idNomEnsenyament, idCodiModalitat, idModalitat, idCursP1, idRegimP1,
 	 idTornP1, idDni, idNie, idPass, idTis, idDataNaixement, idSexe, idNacionalitat, idPaisNaixement, idMunicipiNaixement, idTipusVia, idNomVia, idNumeroVia, idAltresDades, idProvinciaResidencia,
 	 idMunicipiResidencia, idLocalitatResidencia, idCp, idPaisResidencia, idTelefon, idCorreuElectronic, idTipusDocTutor1, idNumDocTutor1, idNomTutor1, idPrimerCognomTutor1, idSegonCognomTutor1,
@@ -73,23 +78,111 @@ public class AddStudentsScreenController implements Initializable {
 	private void searchFolder(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Buscar Archivo Cursos");
-
-		// Agregar filtros para facilitar la busqueda
 		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("CSV", "*.csv"));
+		
+		studentsList = new ArrayList<StudentImport>();
 
 		// Obtener la imagen seleccionada
 		File file = fileChooser.showOpenDialog(null);	
 		
-		ArrayList<String[]> lines = new ArrayList<>();
-		
-		cycles = new ArrayList<>();
-		
 		try {
+			
 			BufferedReader br = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8));
-			while (br.ready()) {
-				lines.add(br.readLine().replaceAll("\"+", "").split(","));
-			}
+			
+			String line = null;
+			int lines = (int) br.lines().count();
+			for (int i = 1; i < lines; i++) {
+				line = Files.readAllLines(Paths.get(file.getAbsolutePath())).get(i);
+				String[] content = line.split(",");
+			
+				studentsList.add(new StudentImport(content[0],content[1],content[2],content[3],content[4],content[5],
+						content[6],content[7],content[8],content[9],content[10],content[11],
+						content[12],content[13],content[14],content[15],content[16],content[17],
+						content[18],content[19],content[20],content[21],content[22],content[23],
+						content[24],content[25],content[26],content[27],content[28],content[29],
+						content[30],content[31],content[32],content[33],content[34],content[35],
+						content[36],content[37],content[38],content[39],content[40],content[41],
+						content[42],content[43],content[44],content[45],content[46],content[47],
+						content[48],content[49],content[50],content[51],content[52],content[53],
+						content[54],content[55],content[56],"",""));	
+			}		
 			br.close();
+			
+			idConvocatoria.setCellValueFactory(new PropertyValueFactory<>("Convocatioria"));
+			idCodiSolicitud.setCellValueFactory(new PropertyValueFactory<>("Codi_solicitud"));
+			idTipusSolicitud.setCellValueFactory(new PropertyValueFactory<>("Tipus_solicitud"));
+			idEstatSolicitud.setCellValueFactory(new PropertyValueFactory<>("Estat_solicitud"));
+			idNom.setCellValueFactory(new PropertyValueFactory<>("Nom"));
+			idPrimerCognom.setCellValueFactory(new PropertyValueFactory<>("Primer_cognom"));
+			idSegonCognom.setCellValueFactory(new PropertyValueFactory<>("Segon_cognom"));		
+			idIdentificadorRalc.setCellValueFactory(new PropertyValueFactory<>("Identificador_RALC"));
+			idTipusAlumne.setCellValueFactory(new PropertyValueFactory<>("Tipus_alumne"));
+			idCodiCentreP1.setCellValueFactory(new PropertyValueFactory<>("Codi_centre_p1"));
+			idNomCentreP1.setCellValueFactory(new PropertyValueFactory<>("nom_centre_p1"));
+			idNaturalesaCentreP1.setCellValueFactory(new PropertyValueFactory<>("naturalesa_centre_p1"));
+			idMunicipiCentreP1.setCellValueFactory(new PropertyValueFactory<>("municipi_centre_p1"));
+			idSsttCentreP1.setCellValueFactory(new PropertyValueFactory<>("SSTT_centre_p1"));
+			idCodiEnsenyamentP1.setCellValueFactory(new PropertyValueFactory<>("codi_ensenyament"));
+			idNomEnsenyament.setCellValueFactory(new PropertyValueFactory<>("nom_ensenyament"));
+			idCodiModalitat.setCellValueFactory(new PropertyValueFactory<>("codi_modalitat"));
+			idModalitat.setCellValueFactory(new PropertyValueFactory<>("modalitat"));
+			idCursP1.setCellValueFactory(new PropertyValueFactory<>("curs_p1"));
+			idRegimP1.setCellValueFactory(new PropertyValueFactory<>("regim_p1"));
+			idTornP1.setCellValueFactory(new PropertyValueFactory<>("torn_p1"));
+			idDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
+			idNie.setCellValueFactory(new PropertyValueFactory<>("nie"));
+			idPass.setCellValueFactory(new PropertyValueFactory<>("pass"));
+			idTis.setCellValueFactory(new PropertyValueFactory<>("tis"));
+			idDataNaixement.setCellValueFactory(new PropertyValueFactory<>("data_naixament"));
+			idSexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
+			idNacionalitat.setCellValueFactory(new PropertyValueFactory<>("nacionalitat"));
+			idPaisNaixement.setCellValueFactory(new PropertyValueFactory<>("pais_naixament"));
+			idMunicipiNaixement.setCellValueFactory(new PropertyValueFactory<>("municipi_naixament"));
+			idTipusVia.setCellValueFactory(new PropertyValueFactory<>("tipus_via"));
+			idNomVia.setCellValueFactory(new PropertyValueFactory<>("nom_via"));
+			idNumeroVia.setCellValueFactory(new PropertyValueFactory<>("numeros_via"));
+			idAltresDades.setCellValueFactory(new PropertyValueFactory<>("altres_dades"));
+			idProvinciaResidencia.setCellValueFactory(new PropertyValueFactory<>("provincia_residencia"));
+			idMunicipiResidencia.setCellValueFactory(new PropertyValueFactory<>("municipi_residencia"));
+			idLocalitatResidencia.setCellValueFactory(new PropertyValueFactory<>("localitat_residencia"));
+			idCp.setCellValueFactory(new PropertyValueFactory<>("cp"));
+			idPaisResidencia.setCellValueFactory(new PropertyValueFactory<>("pais_residencia"));
+			idTelefon.setCellValueFactory(new PropertyValueFactory<>("telefon"));
+			idCorreuElectronic.setCellValueFactory(new PropertyValueFactory<>("correu_electronic"));
+			idTipusDocTutor1.setCellValueFactory(new PropertyValueFactory<>("tipus_doc_tutor1"));
+			idNumDocTutor1.setCellValueFactory(new PropertyValueFactory<>("num_doc_tutor1"));
+			idNomTutor1.setCellValueFactory(new PropertyValueFactory<>("nom_tutor1"));
+			idPrimerCognomTutor1.setCellValueFactory(new PropertyValueFactory<>("primer_cognom_tutor1"));
+			idSegonCognomTutor1.setCellValueFactory(new PropertyValueFactory<>("segon_cognom_tutor1"));
+			idTipusDocTutor2.setCellValueFactory(new PropertyValueFactory<>("tipus_doc_tutor2"));
+			idNumDocTutor2.setCellValueFactory(new PropertyValueFactory<>("num_doc_tutor2"));
+			idNomTutor2.setCellValueFactory(new PropertyValueFactory<>("nom_tutor2"));
+			idPrimerCognomTutor2.setCellValueFactory(new PropertyValueFactory<>("primer_cognom_tutor2"));
+			idSegonCognomTutor2.setCellValueFactory(new PropertyValueFactory<>("segon_cognom_tutor2"));
+			idCodiCentreProc.setCellValueFactory(new PropertyValueFactory<>("codi_centre_proc"));
+			idNomCentreProc.setCellValueFactory(new PropertyValueFactory<>("nom_centre_proc"));
+			idCodiEnsenyamentProc.setCellValueFactory(new PropertyValueFactory<>("codi_ensenyament_proc"));		
+			idNomEnsenyamentProc.setCellValueFactory(new PropertyValueFactory<>("nom_ensenyament_proc"));
+			idCursProc.setCellValueFactory(new PropertyValueFactory<>("curs_proc"));
+			idLlenguaEnten.setCellValueFactory(new PropertyValueFactory<>("llengua_enten"));
+			idReligio.setCellValueFactory(new PropertyValueFactory<>("religio"));
+			idCentreAssignat.setCellValueFactory(new PropertyValueFactory<>("centre_asignat"));
+
+			for (StudentImport studentImport : studentsList) {
+				
+				tableid.getItems().add(studentImport);
+				
+			}
+			
+			for (StudentImport studentImport : studentsList) {
+				
+				Gson gson = new Gson();
+				String JSON = gson.toJson(studentImport);
+				System.out.println(studentImport);
+				System.out.println(JSON);
+				System.out.println(gson);
+			}
+			
 		} catch (FileNotFoundException e) {
 			System.out.println("No se ha seleccionado ningun archivo o bien el archivo seleccionado no tiene un formato correcto.");
 		} catch (NullPointerException e) {
