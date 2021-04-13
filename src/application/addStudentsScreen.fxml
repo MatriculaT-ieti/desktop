@@ -22,10 +22,10 @@
       <Button layoutX="913.0" layoutY="601.0" mnemonicParsing="false" onAction="#handleReturnMenu" prefHeight="39.0" prefWidth="197.0" text="Volver al Menu" />
       <Label fx:id="fileLable" layoutX="54.0" layoutY="612.0" prefHeight="17.0" prefWidth="302.0" style="-fx-background-color: #FFFFFF;" text="Selecciona el archivo CSV..." />
       <Button fx:id="idFolder" layoutX="373.0" layoutY="608.0" mnemonicParsing="false" onAction="#searchFolder" prefHeight="25.0" prefWidth="69.0" text="Buscar" />
-      <Button layoutX="578.0" layoutY="608.0" mnemonicParsing="false" text="Agregar Ciclos Seleccionados" />
+      <Button layoutX="578.0" layoutY="608.0" mnemonicParsing="false" onAction="#addStudent" text="Agregar Ciclos Seleccionados" />
       <ScrollPane layoutX="19.0" layoutY="60.0" prefHeight="517.0" prefWidth="1112.0" style="-fx-border-radius: 100000; -fx-border-color: # FF7800;">
          <content>
-            <TableView fx:id="tableid" fixedCellSize="1.0" prefHeight="514.0">
+            <TableView fx:id="tableid" prefHeight="514.0">
                <columns>
                   <TableColumn fx:id="idConvocatoria" prefWidth="167.0" text="Convocatòria" />
                   <TableColumn fx:id="idCodiSolicitud" prefWidth="158.0" text="Codi sol·licitud" />

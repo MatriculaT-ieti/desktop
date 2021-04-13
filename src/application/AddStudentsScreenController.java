@@ -5,15 +5,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+import javax.net.ssl.HttpsURLConnection;
 import com.google.gson.Gson;
-
 import entity.Cycle;
 import entity.Modulo;
 import entity.RequirementProfile;
@@ -25,15 +26,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 public class AddStudentsScreenController implements Initializable {
 	
+	private String url = "https://matriculat-ieti.herokuapp.com";
+	
 	private static ArrayList<StudentImport> studentsList;
+	private static ArrayList<String> studentListJSON;
 	
 	 @FXML
 	 private TableView<StudentImport> tableid;
@@ -159,8 +166,7 @@ public class AddStudentsScreenController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+		tableid.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 	}
 	
 	@FXML
@@ -278,20 +284,15 @@ public class AddStudentsScreenController implements Initializable {
 			idLlenguaEnten.setCellValueFactory(new PropertyValueFactory<>("llengua_enten"));
 			idReligio.setCellValueFactory(new PropertyValueFactory<>("religio"));
 			idCentreAssignat.setCellValueFactory(new PropertyValueFactory<>("centre_asignat"));
-
+			
+			
+			
 			for (StudentImport studentImport : studentsList) {
 				
 				tableid.getItems().add(studentImport);
 				
-			}
-			
-			for (StudentImport studentImport : studentsList) {
+
 				
-				Gson gson = new Gson();
-				String JSON = gson.toJson(studentImport);
-				System.out.println(studentImport);
-				System.out.println(JSON);
-				System.out.println(gson);
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -302,4 +303,47 @@ public class AddStudentsScreenController implements Initializable {
 			// TODO Auto-generated catch block
 		}
 	}	
+	
+	@FXML
+	private void addStudent(ActionEvent event) {
+		URL obj;
+		try {
+			obj = new URL(url + "/api/db/student/create");
+			
+			HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+			con.setRequestProperty("Content-Type", "application/json");
+			con.setDoOutput(true);
+						
+			OutputStream os = con.getOutputStream();
+			
+			studentListJSON = new ArrayList<String>();
+			
+			for (StudentImport student : tableid.getSelectionModel().getSelectedItems()) {
+				
+				Gson gson = new Gson();
+				String JSON = gson.toJson(student);
+				studentListJSON.add(JSON);
+				
+			}
+			
+			System.out.println(studentListJSON.toString());
+			
+			os.write(studentListJSON.toString().getBytes("UTF-8"));
+			os.close();
+			
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("CORRECT");
+			alert.setHeaderText("PERFIL CREADO");
+			alert.setContentText("Perfil ha sido creado correctamente en la BBDD");
+
+			alert.showAndWait();
+			
+			con.getInputStream();
+		} catch (MalformedURLException e) {
+			System.err.println("Error en la URL al importar.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+    }
 }

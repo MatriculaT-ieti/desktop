@@ -1,13 +1,18 @@
 package application;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import com.google.gson.Gson;
 
 import entity.RequirementProfile;
+import entity.StudentImport;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +27,10 @@ import javafx.scene.layout.AnchorPane;
 public class createRequerimentProfileCrontroller implements Initializable {
 	
 	private static boolean addRequest;
+	
+	private static ArrayList<String> requirementProfileJSON;
+	
+	private String url = "https://matriculat-ieti.herokuapp.com";
 	
 	@FXML
 	private TextField idName, idRequest1, idRequest2, idRequest3, idRequest4, idRequest5, idRequest6;
@@ -87,10 +96,41 @@ public class createRequerimentProfileCrontroller implements Initializable {
 			}
 			profile.setRequiriment(requirements);
 			
+			requirementProfileJSON = new ArrayList<String>();
+			
 			Gson gson = new Gson();
 			String JSON = gson.toJson(profile);
-			System.out.println(profile);
-			System.out.println(JSON);
+			requirementProfileJSON.add(JSON);
+			
+			
+			URL obj;
+			try {
+				obj = new URL(url + "/api/db/requirmentsprofile/create");
+				
+				HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+				con.setRequestProperty("Content-Type", "application/json");
+				con.setDoOutput(true);
+							
+				OutputStream os = con.getOutputStream();
+				
+				os.write(requirementProfileJSON.toString().getBytes("UTF-8"));
+				os.close();
+				
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("CORRECT");
+				alert.setHeaderText("PERFIL CREADO");
+				alert.setContentText("Perfil ha sido creado correctamente en la BBDD");
+
+				alert.showAndWait();
+				
+				con.getInputStream();
+				
+			} catch (MalformedURLException e) {
+				System.err.println("Error en la URL al importar.");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 			
 		}else {
 		

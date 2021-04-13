@@ -22,6 +22,7 @@ public class StudentImport {
 	private String municipi_centre_p1;
 	private String SSTT_centre_p1;
 	private String codi_ensenyament;
+	@SerializedName("cicle_formatiu")
 	private String nom_ensenyament;
 	private String codi_modalitat;
 	private String modalitat;
