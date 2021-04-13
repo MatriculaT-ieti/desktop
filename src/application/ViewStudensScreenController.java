@@ -1,5 +1,6 @@
 package application;
 
+import java.awt.ScrollPane;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import entity.Cycle;
 import entity.Modulo;
+import entity.Student;
 import entity.Unit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,17 +27,45 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 public class ViewStudensScreenController implements Initializable {
 	
 	private static ArrayList<Cycle> cycleArray;
+	private static ArrayList<Student> studentArray;
 	
 	@FXML
 	private ChoiceBox<String> cycleList;
 	
 	@FXML
-	private ListView<String> idListView;
+    private TableView<Student> idTableView;
+    
+    @FXML
+    private TableColumn<Student, String> idColumnDni;
+
+    @FXML
+    private TableColumn<Student, String> idColumnName;
+
+    @FXML
+    private TableColumn<Student, String> idColumnFirstSurname;
+    
+    @FXML
+    private TableColumn<Student, String> idColumnSecondSurname;
+
+    @FXML
+    private TableColumn<Student, String> idPhoneNumber;
+
+    @FXML
+    private TableColumn<Student, String> idMail;	
+    
+    @FXML
+    private TableColumn<Student, String> idCountry;
+
+    @FXML
+    private TableColumn<Student, String> idDirection;	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -109,13 +139,13 @@ public class ViewStudensScreenController implements Initializable {
 				
 			}
 			
-			ObservableList<String> cycleArrayList = FXCollections.observableList(new ArrayList<String>());
-
 			for (Cycle cycle2 : cycleArray) {
 
 				cycleList.getItems().add(cycle2.getName());
 
 			}
+			in.close();
+			con.disconnect();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -126,19 +156,19 @@ public class ViewStudensScreenController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	@FXML
-	public void handleSelectCycle(ActionEvent event) {
+	public void handleSelectCycleGetStudens(ActionEvent event) {
 		
-		idListView.getItems().clear();
+		idTableView.getItems().clear();
 		
 		String cyleName = cycleList.getValue();
 
 		try {
-			
-			URL obj = new URL("https://matriculat-ieti.herokuapp.com/api/db/student/import/cicle_formatiu="+cyleName);
+
+			String url ="https://matriculat-ieti.herokuapp.com/api/db/student/read?cicle_formatiu=" + cyleName.replaceAll("\\s+","%20");
+			URL obj = new URL(url);
 			HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), StandardCharsets.UTF_8));
@@ -149,67 +179,48 @@ public class ViewStudensScreenController implements Initializable {
 			}
 
 			// Read JSON response and print
-			JSONArray listCycles = new JSONArray(response.toString());
-
-			System.out.println(listCycles.length());
+			JSONArray listStudens = new JSONArray(response.toString());
 			
-			cycleArray = new ArrayList<Cycle>();
+			studentArray = new ArrayList<Student>();
 			
-			for(int i = 0; i < listCycles.length(); i ++) {
+			for(int i = 0; i < listStudens.length(); i ++) {
 				
-				JSONObject cyle = listCycles.getJSONObject(i);
+				JSONObject student = listStudens.getJSONObject(i);
 				
-				Cycle cycleEntity = new Cycle();
+				Student studentEntity = new Student();
 				
-				cycleEntity.setName(cyle.get("nom_cicle_formatiu").toString());
+				studentEntity.setDni(student.get("DNI").toString());
+				studentEntity.setName(student.get("Nom").toString());
+				studentEntity.setFirstSurname(student.get("Primer Cognom").toString());
+				studentEntity.setSecondSurname(student.get("Segon Cognom").toString());
+				studentEntity.setPhone(student.get("Telèfon").toString());
+				studentEntity.setEmail(student.get("Correu electrònic").toString());
+				studentEntity.setCountry(student.get("Pais Naixament").toString());
 				
-				ArrayList<Modulo> moduleList = new ArrayList<Modulo>();
+				studentEntity.setFullAdress(student.get("Tipus via").toString() + " " +
+											student.get("Nom via").toString() + ", " + 
+											student.get("Número via").toString() + ", " + 
+											student.get("Municipi residència").toString());
 				
-				JSONArray listModuls = new JSONArray(cyle.getJSONArray("moduls").toString());
-				
-				for(int j = 0; j < listModuls.length(); j ++) {
-					
-					JSONObject modul = listModuls.getJSONObject(j);
-					
-					Modulo moduleEntity = new Modulo();
-					
-					moduleEntity.setName(modul.get("nom_modul").toString());
-					
-					ArrayList<Unit> unitiList = new ArrayList<Unit>();
-					
-					JSONArray listUnits = new JSONArray(modul.getJSONArray("unitats").toString());
-					
-					for(int x = 0; x < listUnits.length(); x ++) {
-					
-						JSONObject unit = listUnits.getJSONObject(x);
-						
-						Unit unitEntity = new Unit();
-						
-						unitEntity.setName(unit.get("nom_unitat_formativa").toString());
-						
-						unitiList.add(unitEntity);
-						
-					}	
-					
-					moduleEntity.setUnitList(unitiList);
-					
-					moduleList.add(moduleEntity);
-					
-				}			
-				
-				cycleEntity.setModuleList(moduleList);
-				
-				cycleArray.add(cycleEntity);
+				studentArray.add(studentEntity);
 				
 			}
 			
-			ObservableList<String> cycleArrayList = FXCollections.observableList(new ArrayList<String>());
+			idColumnDni.setCellValueFactory(new PropertyValueFactory<>("dni"));
+			idColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+			idColumnFirstSurname.setCellValueFactory(new PropertyValueFactory<>("firstSurname"));
+			idColumnSecondSurname.setCellValueFactory(new PropertyValueFactory<>("secondSurname"));
+			idPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phone"));
+			idMail.setCellValueFactory(new PropertyValueFactory<>("email"));
+			idCountry.setCellValueFactory(new PropertyValueFactory<>("country"));
+			idDirection.setCellValueFactory(new PropertyValueFactory<>("fullAdress"));
 
-			for (Cycle cycle2 : cycleArray) {
-
-				cycleList.getItems().add(cycle2.getName());
-
-			}
+			for (Student s : studentArray) {
+				
+				idTableView.getItems().add(s);
+				
+			}			
+			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -237,6 +248,13 @@ public class ViewStudensScreenController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@FXML
+	private void handleGetStudentInfo(ActionEvent event) {
+		
+		
+		
 	}
 	
 	@FXML
