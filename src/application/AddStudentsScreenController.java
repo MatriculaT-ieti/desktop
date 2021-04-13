@@ -39,12 +39,123 @@ public class AddStudentsScreenController implements Initializable {
 	 private TableView<StudentImport> tableid;
 	 
 	 @FXML
-	 private TableColumn<StudentImport, String> idConvocatoria, idCodiSolicitud, idTipusSolicitud, idEstatSolicitud, idNom, idPrimerCognom, idSegonCognom, idIdentificadorRalc, idTipusAlumne, 
-	 idCodiCentreP1, idNomCentreP1, idNaturalesaCentreP1, idMunicipiCentreP1, idSsttCentreP1, idCodiEnsenyamentP1, idNomEnsenyament, idCodiModalitat, idModalitat, idCursP1, idRegimP1,
-	 idTornP1, idDni, idNie, idPass, idTis, idDataNaixement, idSexe, idNacionalitat, idPaisNaixement, idMunicipiNaixement, idTipusVia, idNomVia, idNumeroVia, idAltresDades, idProvinciaResidencia,
-	 idMunicipiResidencia, idLocalitatResidencia, idCp, idPaisResidencia, idTelefon, idCorreuElectronic, idTipusDocTutor1, idNumDocTutor1, idNomTutor1, idPrimerCognomTutor1, idSegonCognomTutor1,
-	 idTipusDocTutor2, idNumDocTutor2, idNomTutor2, idPrimerCognomTutor2, idSegonCognomTutor2, idCodiCentreProc, idNomCentreProc, idCodiEnsenyamentProc, idNomEnsenyamentProc, idCursProc, idLlenguaEnten,
-	 idReligio, idCentreAssignat;
+	 private TableColumn<StudentImport, String> idConvocatoria;
+	 @FXML
+	 private TableColumn<StudentImport, String> idCodiSolicitud;
+	 @FXML
+	 private TableColumn<StudentImport, String> idTipusSolicitud;
+	 @FXML
+	 private TableColumn<StudentImport, String> idEstatSolicitud;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNom;
+	 @FXML
+	 private TableColumn<StudentImport, String> idPrimerCognom;
+	 @FXML
+	 private TableColumn<StudentImport, String> idSegonCognom;
+	 @FXML
+	 private TableColumn<StudentImport, String> idIdentificadorRalc;
+	 @FXML
+	 private TableColumn<StudentImport, String> idTipusAlumne;
+	 @FXML
+	 private TableColumn<StudentImport, String> idCodiCentreP1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNomCentreP1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNaturalesaCentreP1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idMunicipiCentreP1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idSsttCentreP1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idCodiEnsenyamentP1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNomEnsenyament;
+	 @FXML
+	 private TableColumn<StudentImport, String> idCodiModalitat;
+	 @FXML
+	 private TableColumn<StudentImport, String> idModalitat;
+	 @FXML
+	 private TableColumn<StudentImport, String> idCursP1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idRegimP1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idTornP1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idDni;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNie;
+	 @FXML
+	 private TableColumn<StudentImport, String> idPass;
+	 @FXML
+	 private TableColumn<StudentImport, String> idTis;
+	 @FXML
+	 private TableColumn<StudentImport, String> idDataNaixement;
+	 @FXML
+	 private TableColumn<StudentImport, String> idSexe;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNacionalitat;
+	 @FXML
+	 private TableColumn<StudentImport, String> idPaisNaixement;
+	 @FXML
+	 private TableColumn<StudentImport, String> idMunicipiNaixement;
+	 @FXML
+	 private TableColumn<StudentImport, String> idTipusVia;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNomVia;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNumeroVia;
+	 @FXML
+	 private TableColumn<StudentImport, String> idAltresDades; 
+	 @FXML
+	 private TableColumn<StudentImport, String> idProvinciaResidencia;
+	 @FXML
+	 private TableColumn<StudentImport, String> idMunicipiResidencia;
+	 @FXML
+	 private TableColumn<StudentImport, String> idLocalitatResidencia;
+	 @FXML
+	 private TableColumn<StudentImport, String> idCp;
+	 @FXML
+	 private TableColumn<StudentImport, String> idPaisResidencia; 
+	 @FXML
+	 private TableColumn<StudentImport, String> idTelefon;
+	 @FXML
+	 private TableColumn<StudentImport, String> idCorreuElectronic;
+	 @FXML
+	 private TableColumn<StudentImport, String> idTipusDocTutor1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNumDocTutor1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNomTutor1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idPrimerCognomTutor1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idSegonCognomTutor1;
+	 @FXML
+	 private TableColumn<StudentImport, String> idTipusDocTutor2;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNumDocTutor2;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNomTutor2;
+	 @FXML
+	 private TableColumn<StudentImport, String> idPrimerCognomTutor2;
+	 @FXML
+	 private TableColumn<StudentImport, String> idSegonCognomTutor2;
+	 @FXML
+	 private TableColumn<StudentImport, String> idCodiCentreProc;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNomCentreProc;
+	 @FXML
+	 private TableColumn<StudentImport, String> idCodiEnsenyamentProc;
+	 @FXML
+	 private TableColumn<StudentImport, String> idNomEnsenyamentProc;
+	 @FXML
+	 private TableColumn<StudentImport, String> idCursProc;
+	 @FXML
+	 private TableColumn<StudentImport, String> idLlenguaEnten;
+	 @FXML
+	 private TableColumn<StudentImport, String> idReligio;
+	 @FXML
+	 private TableColumn<StudentImport, String> idCentreAssignat;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
