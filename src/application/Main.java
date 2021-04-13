@@ -20,7 +20,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root);
 	
 			stage.setScene(scene);
-			stage.initStyle(StageStyle.UNDECORATED);
+			stage.initStyle(StageStyle.TRANSPARENT);
 			
 			stage.show();
 			
@@ -33,5 +33,8 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+		System.err.println();
 	}
+	
+	
 }
