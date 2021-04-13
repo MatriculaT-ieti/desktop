@@ -121,7 +121,7 @@ public class CyclesScreenController implements Initializable {
 				    AnchorPane.setLeftAnchor(unitList, 00.0);
 				    AnchorPane.setRightAnchor(unitList, 00.0);
 				    //Cambiar esto si hay muchos
-				    AnchorPane.setBottomAnchor(unitList, 150.0);
+				    AnchorPane.setBottomAnchor(unitList, 00.0);
 					anchorPane.getChildren().add(unitList);
 					nameModul.setContent(anchorPane);
 					accordionId.getPanes().add(nameModul);

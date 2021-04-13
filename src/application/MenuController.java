@@ -44,7 +44,58 @@ public class MenuController implements Initializable {
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			Main.escenario.setScene(scene);
-			Main.escenario.setTitle("Cycles Screen");
+			Main.escenario.setTitle("Add Cycles Screen");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	private void handleViewStudensScreen(ActionEvent event) {
+		AnchorPane root;
+		
+		try {
+			root = (AnchorPane)FXMLLoader.load(getClass().getResource("viewStudensScreen.fxml"));
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Main.escenario.setScene(scene);
+			Main.escenario.setTitle("View Studens");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	private void handlecreateRequerimentProfile(ActionEvent event) {
+		AnchorPane root;
+		
+		try {
+			root = (AnchorPane)FXMLLoader.load(getClass().getResource("createRequirementProfile.fxml"));
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Main.escenario.setScene(scene);
+			Main.escenario.setTitle("View Studens");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	private void handleAddStudents(ActionEvent event) {
+		AnchorPane root;
+		
+		try {
+			root = (AnchorPane)FXMLLoader.load(getClass().getResource("addStudentsScreen.fxml"));
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Main.escenario.setScene(scene);
+			Main.escenario.setTitle("View Studens");
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
