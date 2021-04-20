@@ -285,13 +285,9 @@ public class AddStudentsScreenController implements Initializable {
 			idReligio.setCellValueFactory(new PropertyValueFactory<>("religio"));
 			idCentreAssignat.setCellValueFactory(new PropertyValueFactory<>("centre_asignat"));
 			
-			
-			
 			for (StudentImport studentImport : studentsList) {
 				
 				tableid.getItems().add(studentImport);
-				
-
 				
 			}
 			
@@ -329,7 +325,6 @@ public class AddStudentsScreenController implements Initializable {
 			System.out.println(studentListJSON.toString());
 			
 			os.write(studentListJSON.toString().getBytes("UTF-8"));
-			os.close();
 			
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("CORRECT");
@@ -339,6 +334,7 @@ public class AddStudentsScreenController implements Initializable {
 			alert.showAndWait();
 			
 			con.getInputStream();
+			os.close();
 		} catch (MalformedURLException e) {
 			System.err.println("Error en la URL al importar.");
 		} catch (IOException e) {
