@@ -24,18 +24,24 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class ViewStudensScreenController implements Initializable {
 	
 	private static ArrayList<Cycle> cycleArray;
 	private static ArrayList<Student> studentArray;
+	private static ArrayList<JSONObject> studentJSONArray;
+	public static JSONObject studentSelected;
 	
 	@FXML
 	private ChoiceBox<String> cycleList;
@@ -183,9 +189,12 @@ public class ViewStudensScreenController implements Initializable {
 			
 			studentArray = new ArrayList<Student>();
 			
+			studentJSONArray = new ArrayList<JSONObject>();
+			
 			for(int i = 0; i < listStudens.length(); i ++) {
 				
 				JSONObject student = listStudens.getJSONObject(i);
+				studentJSONArray.add(student);
 				
 				Student studentEntity = new Student();
 				
@@ -253,9 +262,32 @@ public class ViewStudensScreenController implements Initializable {
 	@FXML
 	private void handleGetStudentInfo(ActionEvent event) {
 		
-		
-		
-	}
+		if(idTableView.getSelectionModel().getSelectedIndex() >= 0) {
+			JSONObject student = studentJSONArray.get(idTableView.getSelectionModel().getSelectedIndex());
+			studentSelected = student;
+			
+			AnchorPane root;
+			
+			try {
+				root = (AnchorPane)FXMLLoader.load(getClass().getResource("editStudentScreen.fxml"));
+				Scene scene = new Scene(root);
+				Stage stage = new Stage();
+				stage.initModality(Modality.APPLICATION_MODAL);
+				stage.setScene(scene);
+				stage.showAndWait();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setHeaderText("NINGUN ALUMNO SELECCIONADO");
+			alert.setContentText("No has seleccionado ningun alumno para modificar");
+
+			alert.showAndWait();
+			
+		}
+	}		
 	
 	@FXML
 	private void handleClose(ActionEvent event) {
