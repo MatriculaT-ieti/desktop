@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="694.0" prefWidth="1125.0" style="-fx-background-color: #131414;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateCyclesScreenController">
+   <children>
+      <Button layoutX="1103.0" mnemonicParsing="false" onAction="#handleClose" opacity="0.95" style="-fx-background-color: #131414;" text="X" textFill="WHITE">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Button>
+      <Button layoutX="913.0" layoutY="601.0" mnemonicParsing="false" onAction="#handleReturnMenu" prefHeight="39.0" prefWidth="197.0" text="Volver al Menu" />
+      <AnchorPane layoutX="22.0" layoutY="59.0" prefHeight="517.0" prefWidth="1112.0" style="-fx-background-color: #FFF; -fx-border-radius: 15px;">
+         <children>
+            <GridPane layoutX="28.0" layoutY="34.0" prefHeight="273.0" prefWidth="419.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label text="Codi cicle formatiu" GridPane.rowIndex="1" />
+                  <Label text="Nom cicle formatiu" GridPane.rowIndex="2" />
+                  <Label text="Codi adaptació curricular" GridPane.rowIndex="3" />
+                  <Label text="Hores cicle formatiu" GridPane.rowIndex="4" />
+                  <Label text="Data inici cicle formatiu" GridPane.rowIndex="5" />
+                  <Label text="Data fi cicle formatiu" GridPane.rowIndex="6" />
+                  <TextField fx:id="codi_cicle_formatiu" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="nom_cicle_formatiu" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="codi_adaptacio_curricular" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField fx:id="hores_cicle_formatiu" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <TextField fx:id="data_inici_cicle_formatiu" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <TextField fx:id="data_fi_cicle_formatiu" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label text="Información de ciclos">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+            <ListView fx:id="module_list" layoutX="672.0" layoutY="34.0" prefHeight="294.0" prefWidth="407.0" />
+            <Button layoutX="672.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleCreateModuleScreen" prefHeight="25.0" prefWidth="137.0" text="Crear módulo" />
+            <Button layoutX="846.0" layoutY="340.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="233.0" text="Borrar módulo seleccionado" />
+         </children></AnchorPane>
+      <Button layoutX="38.0" layoutY="601.0" mnemonicParsing="false" onAction="#handleCreateCycle" prefHeight="39.0" prefWidth="105.0" text="Crear ciclo" />
+   </children>
+</AnchorPane>

@@ -103,6 +103,23 @@ public class MenuController implements Initializable {
 		}
 	}
 	
+	@FXML
+    void handleCreateCycleScreen(ActionEvent event) {
+		AnchorPane root;
+		
+		try {
+			root = (AnchorPane)FXMLLoader.load(getClass().getResource("createCyclesScreen.fxml"));
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Main.escenario.setScene(scene);
+			Main.escenario.setTitle("Create Cycles");
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
