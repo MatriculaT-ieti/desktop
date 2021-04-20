@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="694.0" prefWidth="566.0" style="-fx-background-color: #131414;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EditStudentScreenController">
+   <children>
+      <Label layoutX="219.0" layoutY="30.0" text="Alumno" textFill="#ff7f0e">
+         <font>
+            <Font name="Lucida Sans Unicode" size="34.0" />
+         </font>
+      </Label>
+      <Button layoutX="165.0" layoutY="637.0" mnemonicParsing="false" onAction="#editStudent" prefHeight="25.0" prefWidth="238.0" text="Aceptar" />
+      <AnchorPane layoutX="33.0" layoutY="92.0" prefHeight="522.0" prefWidth="501.0" style="-fx-background-color: #FFFF;">
+         <children>
+            <Text layoutX="14.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
+            <Text layoutX="17.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Primer Apellido" />
+            <Text layoutX="18.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Segundo Apellido" />
+            <Text layoutX="19.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telèfono" />
+            <Text layoutX="18.0" layoutY="446.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ciclo Formativo" />
+            <TextField fx:id="idCiclo" layoutX="15.0" layoutY="470.0" prefHeight="25.0" prefWidth="158.0" />
+            <TextField fx:id="idTelefono" layoutX="14.0" layoutY="383.0" />
+            <TextField fx:id="idSegundoApellido" layoutX="14.0" layoutY="295.0" />
+            <TextField fx:id="idPrimerApellido" layoutX="14.0" layoutY="186.0" />
+            <TextField fx:id="idName" layoutX="14.0" layoutY="77.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
